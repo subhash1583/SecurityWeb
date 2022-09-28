@@ -11,12 +11,10 @@ const nav = document.querySelector('.nav');
 /*================== FireBase ==================*/
 
 const formContainer = document.querySelector('.form');
-const submitBtn = document.querySelector('.submit');
 const nameBox = document.querySelector('#name');
 const emailBox = document.querySelector('#eamil');
 const subjectBox = document.querySelector('#subject');
 const messageBox = document.querySelector('#message');
-console.log(nameBox.value, emailBox.value, subjectBox.value, messageBox.value);
 
 formContainer.addEventListener('submit', e => {
 	e.preventDefault();
