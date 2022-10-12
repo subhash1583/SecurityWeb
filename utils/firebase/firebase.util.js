@@ -28,3 +28,16 @@ export const insertData = async (name, email, subject, message) => {
 		console.log(`${err}`);
 	}
 };
+
+export const insertAppliedData = async (...data) => {
+	try {
+		await addDoc(collection(db, 'position-seekers'), {
+			name: data[0],
+			contact: data[1],
+			address: data[2],
+			height: data[3],
+		});
+	} catch (err) {
+		console.log(`${err}`);
+	}
+};
