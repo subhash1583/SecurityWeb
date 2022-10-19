@@ -1,4 +1,5 @@
 import { insertData } from './utils/firebase/firebase.util';
+import { insertAppliedData } from './utils/firebase/firebase.util';
 
 const apply_btn = document.querySelector('.sec-7_left_button');
 const overlay = document.querySelector('.overlay');
@@ -28,7 +29,18 @@ const nameBox = document.querySelector('#name');
 const emailBox = document.querySelector('#eamil');
 const subjectBox = document.querySelector('#subject');
 const messageBox = document.querySelector('#message');
+const btnApply = document.querySelector('.modal_right');
+const name = document.querySelector('.name-model');
+const contact = document.querySelector('.contact-model');
+const address = document.querySelector('.address-model');
+const height = document.querySelector('.height-box');
 
+
+btnApply.addEventListener('submit', e => {
+    e.preventDefault();
+    insertAppliedData(name.value, contact.value, address.value, height.value);
+    console.log('hey');
+});
 
 
 learn_btn.addEventListener('click', function () {
@@ -100,29 +112,34 @@ modalc.addEventListener('click', function () {
 });
 modala.addEventListener('click', function () {
     if (modalname === '' && modalcontact === '') {
-        console.log("hi empty  one");
+
         modalright.insertAdjacentHTML("beforeend", "please! Fill Required Details")
     } else {
-        modalright.addEventListener('submit', e => {
+        btnApply.addEventListener('submit', e => {
             e.preventDefault();
-            insertData(modalname.value, modalcontact.value, modaladress.value, modalheight.value);
+            insertAppliedData(name.value, contact.value, address.value, height.value);
+
         });
 
         modala.innerHTML = "Applied";
         modalright.insertAdjacentHTML("beforeend", "Thanks For Applying! We Will Contact You Shortly!")
+        modala.disabled = true;
     }
 })
 fqsubmitbtn.addEventListener('click', function () {
     const emailvalue = document.querySelector('.email-box');
     if (namevalue.value === '' && emailvalue.value === '') {
         formContainer.insertAdjacentHTML('beforeend', "*Fill required details");
+
     } else {
 
         formContainer.addEventListener('submit', e => {
             e.preventDefault();
             insertData(nameBox.value, emailBox.value, subjectBox.value, messageBox.value);
         });
+        formContainer.insertAdjacentHTML('beforeend', "*Thanks For Asking");
         fqsubmitbtn.innerHTML = "submited";
+        fqsubmitbtn.disabled = true;
 
     }
 
